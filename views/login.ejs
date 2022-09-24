@@ -11,50 +11,22 @@
       <% }) %> <% } %>
       <form action="/login" method="POST">
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label"
-            >Email address</label
-          >
-          <input
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            name="email"
-          />
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" />
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-            name="password"
-          />
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password" />
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 
       <form action="/login" method="POST">
         <div class="mb-3">
-          <input
-            type="email"
-            class="form-control"
-            id="demoEmail"
-            aria-describedby="emailHelp"
-            name="email"
-            hidden="true"
-            value="admin@admin.com"
-          />
+          <input type="email" class="form-control" id="demoEmail" aria-describedby="emailHelp" name="email" hidden="true" value="admin@admin.com" />
         </div>
         <div class="mb-3">
-          <input
-            type="password"
-            class="form-control"
-            id="demoPassword"
-            name="password"
-            hidden="true"
-            value="test1234"
-          />
+          <input type="password" class="form-control" id="demoPassword" name="password" hidden="true" value="test1234" />
         </div>
         <button type="submit" class="btn btn-secondary">Demo Login</button>
       </form>
