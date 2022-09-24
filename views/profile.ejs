@@ -38,7 +38,10 @@
         <% for(var i=0; i<bugs.length; i++) {%>
           <li class="col-12 justify-content-between mt-5">
             <a href="/bug/<%= bugs[i]._id%>">
-              <img class="img-fluid" src="<%= bugs[i].image%>">
+              <span class="m-2 fs-2"><%= bugs[i].name %></span>
+              <img class="m-2 img-fluid w-25" src="<%= bugs[i].image%>">
+              <span class="m-2 "><%= bugs[i].description %></span>
+              <span class="m-2 "><%= bugs[i].priority %></span>
             </a>
           </li>
         <% } %>
