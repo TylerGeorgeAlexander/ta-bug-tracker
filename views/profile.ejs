@@ -4,53 +4,65 @@
 
 <div class="container">
   <div class="row mt-5">
-      <div class="col-12">
-          <div class="text-center">
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <a href="/logout" class="col-3 btn btn-danger">Logout</a>
-          </div>
-          <div class="mt-5">
-            <h2>Add a bug</h2>
-            <form action="/bug/createBug" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="name" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="name" name="name">
-              </div>
-              <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <div class="mb-3">
-                <label for="priority" class="form-label">Priority</label>
-                <textarea class="form-control" id="priority" name="priority"></textarea>
-              </div>
-              <div class="mb-3 text-center"><button type="submit" class="btn btn-primary" value="Upload">Submit</button></div>
-            </form>
-          </div>
+    <div class="col-12">
+      <div class="text-center">
+        <p><strong>User Name</strong>: <%= user.userName %></p>
+        <p><strong>Email</strong>: <%= user.email %></p>
+        <a href="/logout" class="col-3 btn btn-danger">Logout</a>
       </div>
-      <div class="col-12">
-        <ul class="row list-unstyled">
-        <% for(var i=0; i<bugs.length; i++) {%>
+      <div class="mt-5">
+        <h2>Add a bug</h2>
+        <form action="/bug/createBug" enctype="multipart/form-data" method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="imgUpload" class="form-label">Image</label>
+            <input type="file" class="form-control" id="imageUpload" name="file">
+          </div>
+          <div class="mb-3">
+            <label for="priority" class="form-label">Priority</label>
+            <textarea class="form-control" id="priority" name="priority"></textarea>
+          </div>
+          <div class="mb-3 text-center"><button type="submit" class="btn btn-primary" value="Upload">Submit</button></div>
+        </form>
+      </div>
+    </div>
+    <div class="col-12">
+      <ul class="row list-unstyled">
+        <table class="table table-striped-columns">
+          <tr>
+            <td>Name</td>
+            <td>Image</td>
+            <td>Description</td>
+            <td>Priority</td>
+          </tr>
+
+          <% for(var i=0; i<bugs.length; i++) {%>
           <li class="col-12 justify-content-between mt-5">
-            <a href="/bug/<%= bugs[i]._id%>">
-              <span class="m-2 fs-2"><%= bugs[i].name %></span>
-              <img class="m-2 img-fluid w-25" src="<%= bugs[i].image%>">
-              <span class="m-2 "><%= bugs[i].description %></span>
-              <span class="m-2 "><%= bugs[i].priority %></span>
-            </a>
+
+            <tr>
+              <a href="/bug/<%= bugs[i]._id%>">
+                <td><span class="m-2 fs-2"><%= bugs[i].name %></span></td>
+                <td><img class="m-2 img-fluid w-25" src="<%= bugs[i].image%>"></td>
+                <td><span class="m-2 "><%= bugs[i].description %></span></td>
+                <td><span class="m-2 "><%= bugs[i].priority %></span></td>
+              </a>
+            </tr>
           </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>  
+          <% } %>
+        </table>
+      </ul>
+      <div class="row justify-content-center mt-5">
+        <a class="btn btn-primary" href="/feed">Return to Feed</a>
+      </div>
     </div>
   </div>
+</div>
 </div>
 <%- include('partials/footer') -%>
