@@ -14,16 +14,20 @@
             <h2>Add a bug</h2>
             <form action="/bug/createBug" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" name="name">
               </div>
               <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description"></textarea>
               </div>
               <div class="mb-3">
                 <label for="imgUpload" class="form-label">Image</label>
                 <input type="file" class="form-control" id="imageUpload" name="file">
+              </div>
+              <div class="mb-3">
+                <label for="priority" class="form-label">Priority</label>
+                <textarea class="form-control" id="priority" name="priority"></textarea>
               </div>
               <div class="mb-3 text-center"><button type="submit" class="btn btn-primary" value="Upload">Submit</button></div>
             </form>

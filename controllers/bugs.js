@@ -22,7 +22,7 @@ module.exports = {
   getBug: async (req, res) => {
     try {
       const bug = await Bug.findById(req.params.id);
-      const comments = await Comment.find({bug : req.params.id});
+      const comments = await Comment.find({ bug: req.params.id });
       res.render("bug.ejs", { bug: bug, user: req.user, comments: comments });
     } catch (err) {
       console.log(err);
@@ -34,12 +34,13 @@ module.exports = {
       const result = await cloudinary.uploader.upload(req.file.path);
 
       await Bug.create({
-        title: req.body.title,
+        user: req.user.id,
+        name: req.body.name,
+        description: req.body.description,
         image: result.secure_url,
         cloudinaryId: result.public_id,
-        caption: req.body.caption,
-        likes: 0,
-        user: req.user.id,
+        priority: req.body.priority,
+        //openedDate is defaulted in schema
       });
       console.log("Bug has been added!");
       res.redirect("/profile");

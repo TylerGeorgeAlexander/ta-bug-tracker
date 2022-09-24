@@ -1,7 +1,15 @@
 const mongoose = require("mongoose");
 
 const BugSchema = new mongoose.Schema({
-  title: {
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
     type: String,
     required: true,
   },
@@ -13,19 +21,11 @@ const BugSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  caption: {
+  priority: {
     type: String,
     required: true,
   },
-  likes: {
-    type: Number,
-    required: true,
-  },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
-  createdAt: {
+  openedDate: {
     type: Date,
     default: Date.now,
   },
