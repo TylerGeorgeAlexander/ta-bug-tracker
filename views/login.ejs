@@ -33,6 +33,31 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+
+      <form action="/login" method="POST">
+        <div class="mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="demoEmail"
+            aria-describedby="emailHelp"
+            name="email"
+            hidden="true"
+            value="admin@admin.com"
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="demoPassword"
+            name="password"
+            hidden="true"
+            value="test1234"
+          />
+        </div>
+        <button type="submit" class="btn btn-secondary">Demo Login</button>
+      </form>
     </section>
   </div>
 </main>
