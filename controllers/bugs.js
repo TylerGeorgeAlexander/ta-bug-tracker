@@ -1,39 +1,39 @@
 const cloudinary = require("../middleware/cloudinary");
-const Post = require("../models/Post");
+const Bug = require("../models/Bug");
 const Comment = require("../models/Comment");
 
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      const bugs = await Bug.find({ user: req.user.id });
+      res.render("profile.ejs", { bugs: bugs, user: req.user });
     } catch (err) {
       console.log(err);
     }
   },
   getFeed: async (req, res) => {
     try {
-      const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts });
+      const bugs = await Bug.find().sort({ createdAt: "desc" }).lean();
+      res.render("feed.ejs", { bugs: bugs });
     } catch (err) {
       console.log(err);
     }
   },
-  getPost: async (req, res) => {
+  getBug: async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id);
-      const comments = await Comment.find({post : req.params.id});
-      res.render("post.ejs", { post: post, user: req.user, comments: comments });
+      const bug = await Bug.findById(req.params.id);
+      const comments = await Comment.find({bug : req.params.id});
+      res.render("bug.ejs", { bug: bug, user: req.user, comments: comments });
     } catch (err) {
       console.log(err);
     }
   },
-  createPost: async (req, res) => {
+  createBug: async (req, res) => {
     try {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
 
-      await Post.create({
+      await Bug.create({
         title: req.body.title,
         image: result.secure_url,
         cloudinaryId: result.public_id,
@@ -41,35 +41,35 @@ module.exports = {
         likes: 0,
         user: req.user.id,
       });
-      console.log("Post has been added!");
+      console.log("Bug has been added!");
       res.redirect("/profile");
     } catch (err) {
       console.log(err);
     }
   },
-  likePost: async (req, res) => {
+  likeBug: async (req, res) => {
     try {
-      await Post.findOneAndUpdate(
+      await Bug.findOneAndUpdate(
         { _id: req.params.id },
         {
           $inc: { likes: 1 },
         }
       );
       console.log("Likes +1");
-      res.redirect(`/post/${req.params.id}`);
+      res.redirect(`/bug/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
   },
-  deletePost: async (req, res) => {
+  deleteBug: async (req, res) => {
     try {
-      // Find post by id
-      let post = await Post.findById({ _id: req.params.id });
+      // Find bug by id
+      let bug = await Bug.findById({ _id: req.params.id });
       // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
-      // Delete post from db
-      await Post.remove({ _id: req.params.id });
-      console.log("Deleted Post");
+      await cloudinary.uploader.destroy(bug.cloudinaryId);
+      // Delete bug from db
+      await Bug.remove({ _id: req.params.id });
+      console.log("Deleted Bug");
       res.redirect("/profile");
     } catch (err) {
       res.redirect("/profile");
