@@ -31,14 +31,17 @@ module.exports = {
   createBug: async (req, res) => {
     try {
       // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
+      let result = null;
+      if (req.file) {
+        result = await cloudinary.uploader.upload(req.file.path);
+      }
 
       await Bug.create({
         user: req.user.id,
         name: req.body.name,
         description: req.body.description,
-        image: result.secure_url,
-        cloudinaryId: result.public_id,
+        image: result ? result.secure_url : "/imgs/favicon.ico",
+        cloudinaryId: result ? result.public_id : "/imgs/favicon.ico",
         priority: req.body.priority,
         //openedDate is defaulted in schema
       });
