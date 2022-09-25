@@ -33,33 +33,6 @@
         </form>
       </div>
     </div>
-    <div class="col-12">
-      <ul class="row list-unstyled">
-        <table class="table table-striped-columns">
-          <tr>
-            <td>Name</td>
-            <td>Image</td>
-            <td>Description</td>
-            <td>Priority</td>
-          </tr>
-
-          <% for(var i=0; i<bugs.length; i++) {%>
-          <li class="col-12 justify-content-between mt-5">
-
-            <tr>
-              <a href="/bug/<%= bugs[i]._id%>">
-                <td><span class="m-2 fs-2"><%= bugs[i].name %></span></td>
-                <td><img class="m-2 img-fluid w-25" src="<%= bugs[i].image%>"></td>
-                <td><span class="m-2 "><%= bugs[i].description %></span></td>
-                <td><span class="m-2 "><%= bugs[i].priority %></span></td>
-              </a>
-            </tr>
-          </li>
-          <% } %>
-        </table>
-      </ul>
-
-    </div>
   </div>
   <!-- Table -->
   <div class="overflow-x-auto w-full">
@@ -73,13 +46,14 @@
             </label>
           </th>
           <th>Name</th>
-          <th>Job</th>
-          <th>Favorite Color</th>
+          <th>Description</th>
+          <th>Priority</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <!-- row 1 -->
+        <% for(var i=0; i<bugs.length; i++) {%>
         <tr>
           <th>
             <label>
@@ -90,123 +64,34 @@
             <div class="flex items-center space-x-3">
               <div class="avatar">
                 <div class="mask mask-squircle w-12 h-12">
-                  <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                  <img src="<%= bugs[i].image%>" alt="Avatar Tailwind CSS Component" />
                 </div>
               </div>
               <div>
-                <div class="font-bold">Hart Hagerty</div>
-                <div class="text-sm opacity-50">United States</div>
+                <div class="font-bold"><%= bugs[i].name%></div>
+                <div class="text-sm opacity-50">...</div>
               </div>
             </div>
           </td>
           <td>
-            Zemlak, Daniel and Leannon
+            <%= bugs[i].description%>
             <br>
-            <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+            <span class="badge badge-ghost badge-sm">...</span>
           </td>
-          <td>Purple</td>
+          <td><%= bugs[i].priority.toUpperCase()%></td>
           <th>
-            <button class="btn btn-ghost btn-xs">details</button>
+            <a class="btn btn-ghost btn-xs" href="/bug/<%= bugs[i]._id%>">details</a>
           </th>
         </tr>
-        <!-- row 2 -->
-        <tr>
-          <th>
-            <label>
-              <input type="checkbox" class="checkbox" />
-            </label>
-          </th>
-          <td>
-            <div class="flex items-center space-x-3">
-              <div class="avatar">
-                <div class="mask mask-squircle w-12 h-12">
-                  <img src="/tailwind-css-component-profile-3@56w.png" alt="Avatar Tailwind CSS Component" />
-                </div>
-              </div>
-              <div>
-                <div class="font-bold">Brice Swyre</div>
-                <div class="text-sm opacity-50">China</div>
-              </div>
-            </div>
-          </td>
-          <td>
-            Carroll Group
-            <br>
-            <span class="badge badge-ghost badge-sm">Tax Accountant</span>
-          </td>
-          <td>Red</td>
-          <th>
-            <button class="btn btn-ghost btn-xs">details</button>
-          </th>
-        </tr>
-        <!-- row 3 -->
-        <tr>
-          <th>
-            <label>
-              <input type="checkbox" class="checkbox" />
-            </label>
-          </th>
-          <td>
-            <div class="flex items-center space-x-3">
-              <div class="avatar">
-                <div class="mask mask-squircle w-12 h-12">
-                  <img src="/tailwind-css-component-profile-4@56w.png" alt="Avatar Tailwind CSS Component" />
-                </div>
-              </div>
-              <div>
-                <div class="font-bold">Marjy Ferencz</div>
-                <div class="text-sm opacity-50">Russia</div>
-              </div>
-            </div>
-          </td>
-          <td>
-            Rowe-Schoen
-            <br>
-            <span class="badge badge-ghost badge-sm">Office Assistant I</span>
-          </td>
-          <td>Crimson</td>
-          <th>
-            <button class="btn btn-ghost btn-xs">details</button>
-          </th>
-        </tr>
-        <!-- row 4 -->
-        <tr>
-          <th>
-            <label>
-              <input type="checkbox" class="checkbox" />
-            </label>
-          </th>
-          <td>
-            <div class="flex items-center space-x-3">
-              <div class="avatar">
-                <div class="mask mask-squircle w-12 h-12">
-                  <img src="/tailwind-css-component-profile-5@56w.png" alt="Avatar Tailwind CSS Component" />
-                </div>
-              </div>
-              <div>
-                <div class="font-bold">Yancy Tear</div>
-                <div class="text-sm opacity-50">Brazil</div>
-              </div>
-            </div>
-          </td>
-          <td>
-            Wyman-Ledner
-            <br>
-            <span class="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-          </td>
-          <td>Indigo</td>
-          <th>
-            <button class="btn btn-ghost btn-xs">details</button>
-          </th>
-        </tr>
-      </tbody>
-      <!-- foot -->
+        <% } %>
+
+        <!-- foot -->
       <tfoot>
         <tr>
           <th></th>
           <th>Name</th>
-          <th>Job</th>
-          <th>Favorite Color</th>
+          <th>Description</th>
+          <th>Priority</th>
           <th></th>
         </tr>
       </tfoot>
