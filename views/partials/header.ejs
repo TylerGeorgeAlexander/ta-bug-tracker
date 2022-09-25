@@ -12,45 +12,71 @@
   <link href="css/output.css" rel="stylesheet">
 </head>
 
-<body data-theme='light'>
-  <header class="container shadow rounded-xl">
-    <div class="navbar bg-base-100">
-      <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl" href="/profile">Bug Tracker</a>
-      </div>
-      <div>
-        <% if(user){ %>
-        <%=user.userName%>
-        <% } %>
-      </div>
-      <div class="flex-none gap-2">
-        <div class="form-control border-none">
-          <input type="text" placeholder="Search" class="input input-bordered" />
+<body data-theme=''>
+  <div class="m-4">
+    <header class="container shadow rounded-xl">
+      <div class="navbar bg-base-100">
+        <div class="flex-1">
+          <a class="btn btn-ghost normal-case text-xl" href="/profile">Bug Tracker</a>
+          <button id="theme-toggle" class="btn btn-link btn-sm ml-2 small" type="button">
+            <input type="checkbox" class="toggle" checked />
+          </button>
         </div>
-        <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full">
-              <% if(user){ %>
-              <img src="<%=user.profileImg||'/imgs/favicon.ico'%>" />
-              <% } else { %>
-              <img src="/imgs/favicon.ico" />
-              <% } %>
-            </div>
-          </label>
-          <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-            <li>
-              <a class="justify-between">
-                Profile
-                <span class="badge">New</span>
-              </a>
-            </li>
-            <li><a>Settings</a></li>
-            <li><a>Logout</a></li>
-          </ul>
+        <div class="flex-none gap-2">
+          <div class="border-none">
+            <input type="text" placeholder="Search" class="input input-bordered" />
+          </div>
+          <div>
+            <% if(user){ %>
+            <span class="m-2">User: <%=user.userName%></span>
+            <% } %>
+          </div>
+          <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+              <div class="w-10 rounded-full">
+                <% if(user){ %>
+                <img src="<%=user.profileImg||'/imgs/favicon.ico'%>" />
+                <% } else { %>
+                <img src="/imgs/favicon.ico" />
+                <% } %>
+              </div>
+            </label>
+            <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+              <li>
+                <a class="justify-between" href="/profile">
+                  Profile
+                  <span class="badge">New</span>
+                </a>
+              </li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 </body>
 
 </html>
+
+<script>
+  var toggle = document.getElementById("theme-toggle");
+
+  var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  if (storedTheme)
+    document.documentElement.setAttribute('data-theme', storedTheme)
+
+
+  toggle.onclick = function() {
+    var currentTheme = document.documentElement.getAttribute("data-theme");
+    var targetTheme = "light";
+
+    if (currentTheme === "light") {
+      targetTheme = "dark";
+    }
+
+    document.documentElement.setAttribute('data-theme', targetTheme)
+    localStorage.setItem('theme', targetTheme);
+  };
+</script>
