@@ -16,7 +16,12 @@
   <header class="container shadow rounded-xl">
     <div class="navbar bg-base-100">
       <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a class="btn btn-ghost normal-case text-xl" href="/profile">Bug Tracker</a>
+      </div>
+      <div>
+        <% if(user){ %>
+        <%=user.userName%>
+        <% } %>
       </div>
       <div class="flex-none gap-2">
         <div class="form-control border-none">
