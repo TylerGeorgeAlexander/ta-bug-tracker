@@ -6,8 +6,9 @@
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-6">
-      <h2><%= bug.title %></h2>
+      <h2 class="fs-2"><%= bug.name %></h2>
       <img class="img-fluid" src="<%= bug.image%>" />
+      
       <div class="row justify-content-between">
         <!-- EXAMPLE OF PUT OVERRIDE -->
         <!-- <form class="col-1" action="/bug/likeBug/<%= bug.id %>?_method=PUT" method="POST">
